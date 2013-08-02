@@ -1,5 +1,5 @@
 //
-// RESideMenuCell.h
+// UIWindow+RESideMenuExtensions.h
 // RESideMenu
 //
 // Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
@@ -24,9 +24,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface RESideMenuCell : UITableViewCell
+@interface UIWindow (RESideMenuExtensions)
 
-@property (assign, readwrite, nonatomic) CGFloat horizontalOffset;
+- (UIImage *)re_snapshotWithStatusBar:(BOOL)withStatusBar;
 
 @end

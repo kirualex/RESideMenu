@@ -8,15 +8,8 @@
 
 #import "AppDelegate.h"
 #import "DemoViewController.h"
-#import "DemoViewController.h"
-#import "SecondViewController.h"
 
-#define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
-
-@implementation AppDelegate {
-    NSMutableArray *_addedItems;
-    NSMutableArray *_menuItems;
-}
+@implementation AppDelegate
 
 + (NSInteger)OSVersion
 {
@@ -31,89 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    _addedItems = [NSMutableArray array];
-    _menuItems = [NSMutableArray array];
-    
-    // Simple menus
-    //
-    RESideMenuItem *homeItem = [[RESideMenuItem alloc] initWithTitle:@"Home" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        DemoViewController *viewController = [[DemoViewController alloc] init];
-        viewController.title = item.title;
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-        [menu displayContentController:navigationController];
-    }];
-    
-    RESideMenuItem *exploreItem = [[RESideMenuItem alloc] initWithTitle:@"Explore" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        SecondViewController *secondViewController = [[SecondViewController alloc] init];
-        secondViewController.title = item.title;
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:secondViewController];
-        [menu displayContentController:navigationController];
-    }];
-    
-    RESideMenuItem *helpPlus1 = [[RESideMenuItem alloc] initWithTitle:@"How to use" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        NSLog(@"Item %@", item);
-        [menu hide];
-    }];
-    
-    RESideMenuItem *helpPlus2 = [[RESideMenuItem alloc] initWithTitle:@"Helpdesk" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        NSLog(@"Item %@", item);
-        [menu hide];
-    }];
-    
-    RESideMenuItem *helpCenterItem = [[RESideMenuItem alloc] initWithTitle:@"Help +" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        NSLog(@"Item %@", item);
-    }];
-    helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
-    
-    // Dynamic addable menus
-    //
-    RESideMenuItem *tagFieldItem = [[RESideMenuItem alloc] initFieldWithPlaceholder:@"+ Add tag" doneAction:^(RESideMenu *menu, RESideMenuItem *item) {
-        __block RESideMenuItem *newTagItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"minus"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
-            NSMutableArray * items = menu.items.mutableCopy;
-            [items removeObject:newTagItem];
-            [_addedItems removeObject:newTagItem];
-            [menu reloadWithItems:items];
-        } action:^(RESideMenu *menu, RESideMenuItem *item) {
-            NSLog(@"Item %@", item);
-            [menu hide];
-        }];
-        
-        NSMutableArray * items = menu.items.mutableCopy;
-        [items insertObject:newTagItem atIndex:2];
-        [_addedItems addObject:newTagItem];
-        [menu reloadWithItems:items];
-    }];
-    
-    RESideMenuItem *tagMakerItem = [[RESideMenuItem alloc] initWithTitle:@"Tags +" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        NSLog(@"Item %@", item);
-    }];
-    
-    NSMutableArray *otherItems = _addedItems;
-    [otherItems insertObject:tagFieldItem atIndex:0];
-    tagMakerItem.subItems = otherItems;
-    
-    // Simple menu with an alert
-    //
-    RESideMenuItem *logOutItem = [[RESideMenuItem alloc] initWithTitle:@"Log out" action:^(RESideMenu *menu, RESideMenuItem *item) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Confirmation" message:@"Are you sure you want to log out?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log Out", nil];
-        [alertView show];
-    }];
-    
-    
-    _sideMenu = [[RESideMenu alloc] initWithItems:@[homeItem, exploreItem, helpCenterItem, tagMakerItem, logOutItem]];
-    
-    _sideMenu.verticalPortraitOffset = IS_WIDESCREEN ? 110 : 76;
-    _sideMenu.verticalLandscapeOffset = 16;
-    
-    _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
-    
-    _sideMenu.openStatusBarStyle = UIStatusBarStyleBlackTranslucent;
-    
-    // Call the home action rather than duplicating the initialisation
-    homeItem.action(_sideMenu, homeItem);
-    
-    self.window.rootViewController = _sideMenu;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[DemoViewController alloc] init]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -127,7 +38,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
