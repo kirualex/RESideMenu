@@ -64,17 +64,13 @@ const int INTERSTITIAL_STEPS = 99;
         CGRect screen = [UIScreen mainScreen].bounds;
         
         // Back
-        _backgroundView = [[REBackgroundView alloc] initWithFrame:screen];
-        _backgroundView.backgroundImage = _backgroundImage;
-        
+        _backgroundView = [[REBackgroundView alloc] initWithFrame:screen];        
         
         // Table
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, screen.size.height)];
         [_tableView setShowsVerticalScrollIndicator:NO];
-        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, self.verticalOffset)];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
     }
@@ -215,7 +211,11 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _originalSize = _screenshotView.frame.size;
     
-    _tableView.alpha = 0;
+    _backgroundView.backgroundImage = _backgroundImage;
+    
+    // Table
+    _tableView.backgroundColor = [UIColor clearColor];
+    _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, self.verticalOffset)];
     
     [window addSubview:_backgroundView];
     [window addSubview:_tableView];
