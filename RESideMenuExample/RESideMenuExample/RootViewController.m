@@ -77,7 +77,7 @@
     helpCenterItem.subItems  = @[helpPlus1,helpPlus2];
     
     // Dynamic addable menus
-    RESideMenuItem *tagFieldItem = [[RESideMenuItem alloc] initFieldWithPlaceholder:@"+ Add tag" doneAction:^(RESideMenu *menu, RESideMenuItem *item) {
+    RESideMenuItem *tagFieldItem = [[RESideMenuItem alloc] initFieldWithPlaceholder:@"Add tag" image:[UIImage imageNamed:@"plus"] highlightedImage:nil imageAction:nil doneAction:^(RESideMenu *menu, RESideMenuItem *item) {
         
         __block RESideMenuItem *newTagItem = [[RESideMenuItem alloc] initWithTitle:menu.lastFieldInput image:[UIImage imageNamed:@"minus"] highlightedImage:nil imageAction:^(RESideMenu *menu, RESideMenuItem *item) {
             

@@ -388,8 +388,10 @@ const int INTERSTITIAL_STEPS = 99;
     switch (item.type) {
         case SideMenuItemTypeField:
             cell.textLabel.text = @"";
-            field = [[UITextField alloc] initWithFrame:CGRectMake(self.horizontalOffset, 4, 200, cell.frame.size.height)];
+            field = [[UITextField alloc] initWithFrame:CGRectMake(self.horizontalOffset, 3, 200, cell.frame.size.height)];
             field.delegate = self;
+            [field setBackgroundColor:[UIColor clearColor]];
+            field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
             [field setAutocapitalizationType:UITextAutocapitalizationTypeNone];
             [field setAutocorrectionType:UITextAutocorrectionTypeNo];
             [field setFont:self.font];
