@@ -211,8 +211,6 @@ const int INTERSTITIAL_STEPS = 99;
     _screenshotView.frame = CGRectMake(0, 0, _screenshotView.image.size.width, _screenshotView.image.size.height);
     _originalSize = _screenshotView.frame.size;
     
-    _backgroundView.backgroundImage = _backgroundImage;
-    
     // Table
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, window.frame.size.width, self.verticalOffset)];
@@ -391,7 +389,7 @@ const int INTERSTITIAL_STEPS = 99;
     switch (item.type) {
         case SideMenuItemTypeField:
             cell.textLabel.text = @"";
-            field = [[UITextField alloc] initWithFrame:CGRectMake(self.horizontalOffset, 12, 200, cell.frame.size.height)];
+            field = [[UITextField alloc] initWithFrame:CGRectMake(self.horizontalOffset, 4, 200, cell.frame.size.height)];
             field.delegate = self;
             [field setAutocapitalizationType:UITextAutocapitalizationTypeNone];
             [field setAutocorrectionType:UITextAutocorrectionTypeNo];
