@@ -39,7 +39,7 @@
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
-@property (strong, readwrite, nonatomic) UIView *backgrounView;
+@property (strong, readwrite, nonatomic) UIView *backgroundView;
 @property (assign, readwrite, nonatomic) BOOL hideStatusBarArea;
 @property (assign, readwrite, nonatomic) BOOL isShowing;
 

@@ -37,7 +37,6 @@ const int INTERSTITIAL_STEPS = 99;
 }
 @property (assign, readwrite, nonatomic) CGFloat initialX;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
-@property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 @property (strong, readonly, nonatomic) UIImageView *screenshotView;
 @property (strong, readonly, nonatomic) UITableView *tableView;
 
@@ -64,7 +63,7 @@ const int INTERSTITIAL_STEPS = 99;
         CGRect screen = [UIScreen mainScreen].bounds;
         
         // Back
-        _backgroundView = [[REBackgroundView alloc] initWithFrame:screen];        
+        _backgroundView = [[UIView alloc] initWithFrame:screen];
         
         // Table
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, screen.size.height)];
@@ -396,6 +395,7 @@ const int INTERSTITIAL_STEPS = 99;
             [field setFont:self.font];
             [field setTextColor:self.textColor];
             [field setPlaceholder:item.title];
+            [field setValue:[UIColor lightTextColor] forKeyPath:@"_placeholderLabel.textColor"];
             [field setReturnKeyType:UIReturnKeyDone];
             field.tag = indexPath.row;
             [cell addSubview:field];

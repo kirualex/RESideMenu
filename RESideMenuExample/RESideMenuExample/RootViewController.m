@@ -118,6 +118,7 @@
     _sideMenu = [[RESideMenu alloc] initWithItems:menuItems];
     _sideMenu.verticalOffset = IS_WIDESCREEN ? 110 : 76;
     _sideMenu.hideStatusBarArea = [AppDelegate OSVersion] < 7;
+    _sideMenu.backgroundView.backgroundColor = [UIColor colorWithWhite:.1 alpha:1];
 }
 
 #pragma mark -
