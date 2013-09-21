@@ -39,6 +39,7 @@ const int INTERSTITIAL_STEPS = 99;
 @property (assign, readwrite, nonatomic) CGSize originalSize;
 @property (strong, readonly, nonatomic) UIImageView *screenshotView;
 @property (strong, readonly, nonatomic) UITableView *tableView;
+@property (strong, readonly, nonatomic) REBackgroundView *backgroundView;
 
 // Array containing menu (which are array of items)
 @property (strong, readwrite, nonatomic) NSMutableArray *menuStack;
@@ -63,7 +64,7 @@ const int INTERSTITIAL_STEPS = 99;
         CGRect screen = [UIScreen mainScreen].bounds;
         
         // Back
-        _backgroundView = [[UIView alloc] initWithFrame:screen];
+        _backgroundView = [[REBackgroundView alloc] initWithFrame:screen];
         
         // Table
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, screen.size.height)];
@@ -202,6 +203,11 @@ const int INTERSTITIAL_STEPS = 99;
 - (void) updateViews
 {
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    
+    
+    _backgroundView.backgroundColor = _backgroundColor;
+    _backgroundView.backgroundImage = _backgroundImage;
+    
     
     // Screenshot
     _screenshotView = [[UIImageView alloc] initWithFrame:window.frame];
