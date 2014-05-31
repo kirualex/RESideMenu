@@ -50,7 +50,6 @@
     _imageView.image = backgroundImage;
 }
 
-/*
 - (void)drawRect:(CGRect)rect
 {
     if (self.backgroundImage)
@@ -90,6 +89,5 @@
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
 }
- */
 
 @end
